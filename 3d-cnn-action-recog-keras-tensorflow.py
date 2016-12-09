@@ -30,10 +30,10 @@ X_tr=[]           # variable to store entire dataset
 
 #Reading boxing action class
 
-listing = os.listdir('kth-dataset/boxing')
+listing = os.listdir('../kth-dataset/boxing')
 
 for vid in listing:
-    vid = 'kth-dataset/boxing/'+vid
+    vid = '../kth-dataset/boxing/'+vid
     frames = []
     cap = cv2.VideoCapture(vid)
     fps = cap.get(5)
@@ -67,10 +67,10 @@ print("boxing done")
 
 #Reading hand clapping action class
 
-listing2 = os.listdir('kth-dataset/handclapping')
+listing2 = os.listdir('../kth-dataset/handclapping')
 
 for vid2 in listing2:
-    vid2 = 'kth-dataset/handclapping/'+vid2
+    vid2 = '../kth-dataset/handclapping/'+vid2
     frames = []
     cap = cv2.VideoCapture(vid2)
     fps = cap.get(5)
@@ -103,10 +103,10 @@ print("handclapping done")
 
 #Reading hand waving action class
 
-listing3 = os.listdir('kth-dataset/handwaving')
+listing3 = os.listdir('../kth-dataset/handwaving')
 
 for vid3 in listing3:
-    vid3 = 'kth-dataset/handwaving/'+vid3
+    vid3 = '../kth-dataset/handwaving/'+vid3
     frames = []
     cap = cv2.VideoCapture(vid3)
     fps = cap.get(5)
@@ -139,10 +139,10 @@ print("handwaving done")
 
 #Reading jogging action class
 
-listing4 = os.listdir('kth-dataset/jogging')
+listing4 = os.listdir('../kth-dataset/jogging')
 
 for vid4 in listing4:
-    vid4 = 'kth-dataset/jogging/'+vid4
+    vid4 = '../kth-dataset/jogging/'+vid4
     frames = []
     cap = cv2.VideoCapture(vid4)
     fps = cap.get(5)
@@ -175,10 +175,10 @@ print("jogging done")
 
 #Reading running action class
 
-listing5 = os.listdir('kth-dataset/running')
+listing5 = os.listdir('../kth-dataset/running')
 
 for vid5 in listing5:
-    vid5 = 'kth-dataset/running/'+vid5
+    vid5 = '../kth-dataset/running/'+vid5
     frames = []
     cap = cv2.VideoCapture(vid5)
     fps = cap.get(5)
@@ -211,10 +211,10 @@ print("running done")
 
 #Reading walking action class
 
-listing6 = os.listdir('kth-dataset/walking')
+listing6 = os.listdir('../kth-dataset/walking')
 
 for vid6 in listing6:
-    vid6 = 'kth-dataset/walking/'+vid6
+    vid6 = '../kth-dataset/walking/'+vid6
     frames = []
     cap = cv2.VideoCapture(vid6)
     fps = cap.get(5) # cv2.cv.CV_CAP_PROP_FPS ; cv2.CAP_PROP_FPS
@@ -307,9 +307,9 @@ train_set /= np.max(train_set)
 
 
 # Define model
-model_exists = os.path.exists('current.h5')
+model_exists = os.path.exists('../current.h5')
 if (model_exists):
-    model = load_model('current.h5')
+    model = load_model('../current.h5')
     print("**************************************************")
     print("current.h5 model loaded")
 
@@ -360,7 +360,7 @@ hist = model.fit(
     )
 
 # Save model
-#model.save("current.h5")
+#model.save("../current.h5")
 
 #hist = model.fit(train_set, Y_train, batch_size=batch_size,
 #         nb_epoch=nb_epoch,validation_split=0.2, show_accuracy=True,
@@ -376,34 +376,52 @@ score = model.evaluate(
     )
 print('**********************************************')
 print('Test score:', score)
-
 print('History', hist.history)
+print('train_loss', train_loss)
+print('val_loss', val_loss)
+print('train_acc', train_acc)
+print('val_acc', val_acc)
+
 
 # Plot the results
 train_loss=hist.history['loss']
 val_loss=hist.history['val_loss']
 train_acc=hist.history['acc']
 val_acc=hist.history['val_acc']
-xc=range(100)
 
-plt.figure(1,figsize=(7,5))
-plt.plot(xc,train_loss)
-plt.plot(xc,val_loss)
-plt.xlabel('num of Epochs')
-plt.ylabel('loss')
-plt.title('train_loss vs val_loss')
-plt.grid(True)
-plt.legend(['train','val'])
-#print plt.style.available # use bmh, classic,ggplot for big pictures
-plt.style.use(['classic'])
 
-plt.figure(2,figsize=(7,5))
-plt.plot(xc,train_acc)
-plt.plot(xc,val_acc)
-plt.xlabel('num of Epochs')
-plt.ylabel('accuracy')
-plt.title('train_acc vs val_acc')
-plt.grid(True)
-plt.legend(['train','val'],loc=4)
-#print plt.style.available # use bmh, classic,ggplot for big pictures
-plt.style.use(['classic'])
+# write results to file
+import time
+now = str(datetime.datetime.now()).split('.')[0]
+filename = now
+target = open(filename, 'w')
+target.write('train_loss', str(train_loss))
+target.write('val_loss', str(val_loss))
+target.write('train_acc', str(train_acc))
+target.write('val_acc', str(val_acc))
+
+
+
+# xc=range(100)
+#
+# plt.figure(1,figsize=(7,5))
+# plt.plot(xc,train_loss)
+# plt.plot(xc,val_loss)
+# plt.xlabel('num of Epochs')
+# plt.ylabel('loss')
+# plt.title('train_loss vs val_loss')
+# plt.grid(True)
+# plt.legend(['train','val'])
+# #print plt.style.available # use bmh, classic,ggplot for big pictures
+# plt.style.use(['classic'])
+#
+# plt.figure(2,figsize=(7,5))
+# plt.plot(xc,train_acc)
+# plt.plot(xc,val_acc)
+# plt.xlabel('num of Epochs')
+# plt.ylabel('accuracy')
+# plt.title('train_acc vs val_acc')
+# plt.grid(True)
+# plt.legend(['train','val'],loc=4)
+# #print plt.style.available # use bmh, classic,ggplot for big pictures
+# plt.style.use(['classic'])
