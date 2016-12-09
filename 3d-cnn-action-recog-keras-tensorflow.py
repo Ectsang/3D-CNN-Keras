@@ -390,7 +390,7 @@ print('train_acc', train_acc)
 print('val_acc', val_acc)
 
 # write results to file
-import time
+import datetime
 now = str(datetime.datetime.now()).split('.')[0]
 filename = '../results/' + now
 target = open(filename, 'w')
