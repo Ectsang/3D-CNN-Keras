@@ -374,13 +374,6 @@ score = model.evaluate(
     batch_size=batch_size,
     #show_accuracy=True
     )
-print('**********************************************')
-print('Test score:', score)
-print('History', hist.history)
-print('train_loss', train_loss)
-print('val_loss', val_loss)
-print('train_acc', train_acc)
-print('val_acc', val_acc)
 
 
 # Plot the results
@@ -388,7 +381,13 @@ train_loss=hist.history['loss']
 val_loss=hist.history['val_loss']
 train_acc=hist.history['acc']
 val_acc=hist.history['val_acc']
-
+print('**********************************************')
+print('Test score:', score)
+print('History', hist.history)
+print('train_loss', train_loss)
+print('val_loss', val_loss)
+print('train_acc', train_acc)
+print('val_acc', val_acc)
 
 # write results to file
 import time
