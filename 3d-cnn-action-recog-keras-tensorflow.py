@@ -394,10 +394,14 @@ import datetime
 now = str(datetime.datetime.now()).split('.')[0]
 filename = '../results/' + now
 target = open(filename, 'w')
-target.write('train_loss', str(train_loss))
-target.write('val_loss', str(val_loss))
-target.write('train_acc', str(train_acc))
-target.write('val_acc', str(val_acc))
+target.write('train_loss\n')
+target.write(str(train_loss))
+target.write('\nval_loss\n')
+target.write(str(val_loss))
+target.write('\ntrain_acc\n')
+target.write(str(train_acc))
+target.write('\nval_acc\n')
+target.write(str(val_acc))
 
 
 
