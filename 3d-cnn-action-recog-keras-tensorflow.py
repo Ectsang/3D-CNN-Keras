@@ -393,6 +393,7 @@ print('val_acc', val_acc)
 import datetime
 now = str(datetime.datetime.now()).split('.')[0]
 filename = '../results/' + now
+filename.replace(' ','_').replace(':','-')
 target = open(filename, 'w')
 target.write('train_loss\n')
 target.write(str(train_loss))
@@ -402,7 +403,7 @@ target.write('\ntrain_acc\n')
 target.write(str(train_acc))
 target.write('\nval_acc\n')
 target.write(str(val_acc))
-
+target.close()
 
 
 # xc=range(100)
