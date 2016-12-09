@@ -251,9 +251,9 @@ X_tr_array = np.array(X_tr)   # convert the frames read into array
 num_samples = len(X_tr_array)
 print num_samples
 
-# Assign Label to each class
-label=np.ones((num_samples,),dtype = int)
-label[0:100]= 0
+# Assign Label to each class (label is a 1-D array of 0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,2,3,3,3,3,3,3, etc)
+label=np.ones((num_samples,), dtype = int)
+label[0:100] = 0
 label[100:199] = 1
 label[199:299] = 2
 label[299:399] = 3
@@ -261,13 +261,16 @@ label[399:499]= 4
 label[499:] = 5
 
 
-
-train_data = [X_tr_array,label]
-
+# train_data is num_samples columns x 2 rows
+# train_data[0] = X_tr_array  and  train_data[1] = label
+train_data = [X_tr_array, label]
+# X_train is now X_tr_array
+# y_train is now label
 (X_train, y_train) = (train_data[0],train_data[1])
+# 599 num_samples, 16,16,15 shape
 print('X_Train shape:', X_train.shape)
-
-train_set = np.zeros((num_samples, 1, img_rows,img_cols,img_depth))
+# train_set is numpy array of zeros of 16 rows, 16 cols, 15 frame depth
+train_set = np.zeros((num_samples, 1, img_rows, img_cols, img_depth))
 
 for h in xrange(num_samples):
     train_set[h][0][:][:][:]=X_train[h,:,:,:]
