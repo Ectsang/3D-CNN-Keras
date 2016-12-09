@@ -59,7 +59,7 @@ for vid in listing:
 
     #print input.shape
     ipt=np.rollaxis(np.rollaxis(input,2,0),2,0)
-    print ipt.shape
+    #print ipt.shape #(16,16,15)
 
     X_tr.append(ipt)
 
@@ -95,7 +95,7 @@ for vid2 in listing2:
 
     #print input.shape
     ipt=np.rollaxis(np.rollaxis(input,2,0),2,0)
-    print ipt.shape
+    #print ipt.shape #(16,16,15)
 
     X_tr.append(ipt)
 
@@ -131,7 +131,7 @@ for vid3 in listing3:
 
     #print input.shape
     ipt=np.rollaxis(np.rollaxis(input,2,0),2,0)
-    print ipt.shape
+    #print ipt.shape #(16,16,15)
 
     X_tr.append(ipt)
 
@@ -167,7 +167,7 @@ for vid4 in listing4:
 
     #print input.shape
     ipt=np.rollaxis(np.rollaxis(input,2,0),2,0)
-    print ipt.shape
+    #print ipt.shape #(16,16,15)
 
     X_tr.append(ipt)
 
@@ -203,7 +203,7 @@ for vid5 in listing5:
 
     #print input.shape
     ipt=np.rollaxis(np.rollaxis(input,2,0),2,0)
-    print ipt.shape
+    #print ipt.shape #(16,16,15)
 
     X_tr.append(ipt)
 
@@ -239,7 +239,7 @@ for vid6 in listing6:
 
     #print input.shape
     ipt=np.rollaxis(np.rollaxis(input,2,0),2,0)
-    print ipt.shape
+    #print ipt.shape #(16,16,15)
 
     X_tr.append(ipt)
 
@@ -393,7 +393,7 @@ print('val_acc', val_acc)
 import datetime
 now = str(datetime.datetime.now()).split('.')[0]
 filename = '../results/' + now
-filename.replace(' ','_').replace(':','-')
+filename = filename.replace(' ','_').replace(':','-')
 target = open(filename, 'w')
 target.write('train_loss\n')
 target.write(str(train_loss))
