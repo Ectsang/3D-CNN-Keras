@@ -393,7 +393,7 @@ val_acc=hist.history['val_acc']
 # write results to file
 import time
 now = str(datetime.datetime.now()).split('.')[0]
-filename = now
+filename = '../results/' + now
 target = open(filename, 'w')
 target.write('train_loss', str(train_loss))
 target.write('val_loss', str(val_loss))
