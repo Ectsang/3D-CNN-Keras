@@ -397,6 +397,7 @@ import datetime
 now = str(datetime.datetime.now()).split('.')[0]
 filename = '../results/' + now
 filename = filename.replace(' ','_').replace(':','-')
+filename = filename + '.' + nb_epoch + 'e'
 target = open(filename, 'w')
 target.write('train_loss\n')
 target.write(str(train_loss))
